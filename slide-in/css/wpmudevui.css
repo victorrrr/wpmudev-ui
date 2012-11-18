@@ -162,6 +162,13 @@ body { margin:100px; background-color: #ebebeb; }
 	background-repeat: no-repeat;
 }
 
+/* DISABLED */
+
+#wpmudev-ui input[disabled='disabled'],
+#wpmudev-ui select[disabled='disabled'],
+#wpmudev-ui textarea[disabled='disabled'] {
+	opacity: 0.4;
+}
 /* IMAGE URIS */
 
 #wpmudev-ui button.save:before {
