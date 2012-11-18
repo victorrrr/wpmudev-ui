@@ -10,7 +10,7 @@ var wpmudevui = {
 		checkNumSupport : function()
 		{ 
 			var i = document.createElement('input'),
-					s = this.supports;
+				s = this.supports;
 			i.setAttribute('type','number');
 			return s.typenum = i.type !=="text";  
 		},
