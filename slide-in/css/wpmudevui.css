@@ -178,6 +178,42 @@ body { margin:100px; background-color: #ebebeb; }
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjU1OUVDRTkyM0QzMTFFMkIzQjNFQzAzOTlCMTQzQjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjU1OUVDRUEyM0QzMTFFMkIzQjNFQzAzOTlCMTQzQjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NTU5RUNFNzIzRDMxMUUyQjNCM0VDMDM5OUIxNDNCOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2NTU5RUNFODIzRDMxMUUyQjNCM0VDMDM5OUIxNDNCOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkNAYDEAAADKSURBVHjadFJBDcMwDMyiEcggjEIGIaNQCBmAPEJhhbBCaCG0EBYIC4SVwhzpVlmWc9JJjd2zT7ZPKSWjwBE9vndikT9YRfAifogr+CZ+ibkn9BBEFDCsY3s/UcRx4RXVnXDwIN5E8ZkLsyJqqCjKEZqrMwTR6FhhVSJaNj2JiXghjkrO94QbVrArVo+pViUemCD0hKVjdYNYG1r5d1y0JFuJxGhZUlr2mPYs4q3JYtl13GGPryIrkx7kyVWIB1StLD7hgg7bPwEGAIDDLHSuKj7PAAAAAElFTkSuQmCC);
 }
 
+/* POLYFILLS */
+#wpmudev-ui .arrow-controller { display: inline-block; position: relative; top:4px; }
+#wpmudev-ui span .polyarrow-up, #wpmudev-ui span .polyarrow-down { 
+	display: block; 
+	width: 12px; 
+	height:9px;
+	border: 1px solid #bfbfbf;
+	background-clip: padding-box;
+	background-color: #e9e9e9;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+	background-image: radial-gradient(center center, 150px 150px, #fff 0%, #e5e5e5 100%);
+	position: relative;
+}
+#wpmudev-ui .polyarrow-up { margin-bottom: 3px; border-radius: 4px 4px 1px 1px;}
+#wpmudev-ui .polyarrow-down { border-radius: 1px 1px 4px 4px;}
+#wpmudev-ui .polyarrow-down:after, 
+#wpmudev-ui .polyarrow-up:after {
+	font:8px Helvetica, sans-serif;
+	color: #737373;
+	right: 2px;
+	top: -1px;
+	position: absolute;
+}
+#wpmudev-ui .polyarrow-down:after {
+	content:'\25bc';
+}
+#wpmudev-ui .polyarrow-up:after {
+	content: '\25b2';
+}
+
+#wpmudev-ui .polyarrow-down:hover,
+#wpmudev-ui .polyarrow-up:hover {
+	border-color: #a6a6a6;
+	cursor: pointer;
+}
+
 /* Specifically for slide-in plugin */
 
 #wpmudev-ui .position-control {
