@@ -10,7 +10,7 @@ var wpmudevui = {
 		checkNumSupport : function()
 		{ 
 			var i = document.createElement('input'),
-				s = this.supports;
+				  s = this.supports;
 			i.setAttribute('type','number');
 			return s.typenum = i.type !=="text";  
 		},
@@ -19,20 +19,63 @@ var wpmudevui = {
 		typeNumPoly : function()
 		{
 			this.checkNumSupport();
-			var els = document.getElementsByTagName('input'),
-			      l = els.length,
-			   fill = document.createElement('span'); 
 
 			if (!(this.supports.typenum)) {
-				console.log('no typenum support, run polyfill');
-				for (var i=0; i<l; i++){
-					if (els[i].getAttribute('type') === "number") {
-						console.log('hit number');
-						fill.className = 'arrow-controller';
-						fill.innerHTML = '<div class="polyarrow-up"></div><div class="polyarrow-down"></div>';
-						els[i].parentNode.insertBefore(fill, els[i].nextSibling);
+				
+				$('input').each(function(){
+					if ( $(this).attr('type') === 'number' ) {
+							// insert arrow controlls
+							$(this).after('<span class="arrow-controller"><div class="num-arrow-up"></div><div class="num-arrow-down"></div></span>');
+							
+							// handle clicks for inserted controlls
+							$(this).next().find('.num-arrow-up').on( 'click' , function(){
+								var $field = $(this).parent().prev(),
+										 value = parseInt($field.val()),
+										   min = parseInt($field.attr('min')),
+									     max = parseInt($field.attr('max'));
+
+								if ( typeof value === 'number' && !isNaN(value) ) {
+									if ((value >= min) && (value < max)) {
+										$field.val( value + 1 );
+									}
+								} else {
+									$field.val(min);
+								}
+							});
+
+							$(this).next().find('.num-arrow-down').on( 'click' , function(){
+								var $field = $(this).parent().prev(),
+										 value = parseInt($field.val()),
+										   min = parseInt($field.attr('min')),
+									     max = parseInt($field.attr('max'));
+
+								if ( typeof value === 'number' && !isNaN(value) ) {
+									if ((value >= min+1) && (value <= max)) {
+										$field.val( value - 1 );
+									}
+								} else {
+									$field.val(min);
+								}
+							});
+
+							// handle field blur appropriately
+							$(this).on( 'blur' , function() {
+								var value = parseInt( $(this).val() ),
+										  min = parseInt( $(this).attr('min') ),
+										  max = parseInt( $(this).attr('max') );
+
+								if ( typeof value === 'number' && !isNaN(value) ) {
+									if (value < min) {
+										$(this).val(min);
+									} else if (value > max) {
+										$(this).val(max);
+									}
+								} else {
+									$(this).val(min);
+								}
+							});
 					}
-				}
+				});
 			}
 		},
 
@@ -44,4 +87,6 @@ var wpmudevui = {
 
 }; // wpmudevui object definition
 
-wpmudevui.init();
+$(function(){
+	wpmudevui.init();
+}); // DOM Ready

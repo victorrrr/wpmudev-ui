@@ -180,7 +180,7 @@ body { margin:100px; background-color: #ebebeb; }
 
 /* POLYFILLS */
 #wpmudev-ui .arrow-controller { display: inline-block; position: relative; top:4px; }
-#wpmudev-ui span .polyarrow-up, #wpmudev-ui span .polyarrow-down { 
+#wpmudev-ui span .num-arrow-up, #wpmudev-ui span .num-arrow-down { 
 	display: block; 
 	width: 12px; 
 	height:9px;
@@ -191,27 +191,35 @@ body { margin:100px; background-color: #ebebeb; }
 	background-image: radial-gradient(center center, 150px 150px, #fff 0%, #e5e5e5 100%);
 	position: relative;
 }
-#wpmudev-ui .polyarrow-up { margin-bottom: 3px; border-radius: 4px 4px 1px 1px;}
-#wpmudev-ui .polyarrow-down { border-radius: 1px 1px 4px 4px;}
-#wpmudev-ui .polyarrow-down:after, 
-#wpmudev-ui .polyarrow-up:after {
+#wpmudev-ui .num-arrow-up { margin-bottom: 3px; border-radius: 4px 4px 1px 1px;}
+#wpmudev-ui .num-arrow-down { border-radius: 1px 1px 4px 4px;}
+#wpmudev-ui .num-arrow-down:after, 
+#wpmudev-ui .num-arrow-up:after {
 	font:8px Helvetica, sans-serif;
 	color: #737373;
 	right: 2px;
 	top: -1px;
 	position: absolute;
 }
-#wpmudev-ui .polyarrow-down:after {
+#wpmudev-ui .num-arrow-down:after {
 	content:'\25bc';
 }
-#wpmudev-ui .polyarrow-up:after {
+#wpmudev-ui .num-arrow-up:after {
 	content: '\25b2';
 }
 
-#wpmudev-ui .polyarrow-down:hover,
-#wpmudev-ui .polyarrow-up:hover {
+#wpmudev-ui .num-arrow-down:hover,
+#wpmudev-ui .num-arrow-up:hover {
 	border-color: #a6a6a6;
 	cursor: pointer;
+}
+
+#wpmudev-ui .num-arrow-up:active,
+#wpmudev-ui .num-arrow-down:active {
+	background-image: -moz-linear-gradient(bottom, #d1d1d1 0%, #e0e0e0 39.6%, #e0e0e0 100%); 
+	background-image: -o-linear-gradient(bottom, #d1d1d1 0%, #e0e0e0 39.6%, #e0e0e0 100%); 
+	background-image: -webkit-linear-gradient(bottom, #d1d1d1 0%, #e0e0e0 39.6%, #e0e0e0 100%); 
+	background-image: linear-gradient(bottom, #d1d1d1 0%, #e0e0e0 39.6%, #e0e0e0 100%);
 }
 
 /* Specifically for slide-in plugin */
