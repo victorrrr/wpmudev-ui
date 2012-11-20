@@ -36,7 +36,9 @@ body { margin:100px; background-color: #ebebeb; }
 #wpmudev-ui input.medium { width: 72px; }
 #wpmudev-ui input.long { width: 278px; }
 
-#wpmudev-ui button {
+#wpmudev-ui button,
+#wpmudev-ui button[disabled="disabled"]:hover,
+#wpmudev-ui button[disabled="disabled"]:active {
 	text-align: center;
 	height: 36px;
 	padding: 0 18px;
@@ -166,8 +168,12 @@ body { margin:100px; background-color: #ebebeb; }
 
 #wpmudev-ui input[disabled='disabled'],
 #wpmudev-ui select[disabled='disabled'],
-#wpmudev-ui textarea[disabled='disabled'] {
+#wpmudev-ui textarea[disabled='disabled'],
+#wpmudev-ui button[disabled='disabled'] {
 	opacity: 0.4;
+}
+#wpmudev-ui button[disabled='disabled']:hover {
+	cursor: not-allowed;
 }
 /* IMAGE URIS */
 
@@ -179,7 +185,7 @@ body { margin:100px; background-color: #ebebeb; }
 }
 
 /* POLYFILLS */
-#wpmudev-ui .arrow-controller { display: inline-block; position: relative; top:4px; margin-right: 15px; }
+#wpmudev-ui .arrow-controller { display: inline-block; position: relative; top:6px; margin-right: 15px; }
 #wpmudev-ui .num-arrow-up, #wpmudev-ui .num-arrow-down { 
 	display: block; 
 	width: 12px; 
@@ -222,6 +228,27 @@ body { margin:100px; background-color: #ebebeb; }
 	background-image: linear-gradient(bottom, #d1d1d1 0%, #e0e0e0 39.6%, #e0e0e0 100%);
 }
 
+/* mozilla specific */
+@-moz-document url-prefix() {
+	    #wpmudev-ui .position-control .left { left:-22px; top:8px; }
+		#wpmudev-ui .position-control .top { top:-20px; left:5px;  }
+		#wpmudev-ui .position-control .right { right:-20px; top:8px; }
+		#wpmudev-ui .position-control .bottom { bottom:-20px; left:5px; }
+}
+
+/* IE 8, oh how i hate thee */
+.ie8 #wpmudev-ui li.select:after { display: none; }
+.ie8 #wpmudev-ui li.select:before { display: none; }
+.ie8 #wpmudev-ui input[type="text"] { display: inline; padding-top:10px; height: 24px;}
+.ie8 #wpmudev-ui .arrow-controller { top:16px; }
+.ie8 #wpmudev-ui select { height: auto; padding-right: 0; }
+.ie8 #wpmudev-ui button.save:before { top:3px; }
+
+
+
+/* SLIDE-IN ONLY RULES
+   =================== */
+
 /* Specifically for slide-in plugin */
 
 #wpmudev-ui .position-control {
@@ -242,18 +269,3 @@ body { margin:100px; background-color: #ebebeb; }
 #wpmudev-ui .position-control .right { right:-20px; top:8px; }
 #wpmudev-ui .position-control .bottom { bottom:-20px; left:7px; }
 
-/* mozilla specific */
-@-moz-document url-prefix() {
-	    #wpmudev-ui .position-control .left { left:-22px; top:8px; }
-		#wpmudev-ui .position-control .top { top:-20px; left:5px;  }
-		#wpmudev-ui .position-control .right { right:-20px; top:8px; }
-		#wpmudev-ui .position-control .bottom { bottom:-20px; left:5px; }
-}
-
-/* IE 8, oh how i hate thee */
-.ie8 #wpmudev-ui li.select:after { display: none; }
-.ie8 #wpmudev-ui li.select:before { display: none; }
-.ie8 #wpmudev-ui input[type="text"] { position: relative; top:-8px; display: inline; }
-.ie8 #wpmudev-ui .arrow-controller { top:16px; }
-.ie8 #wpmudev-ui select { height: auto; padding-right: 0; }
-.ie8 #wpmudev-ui button.save:before { top:3px; }
