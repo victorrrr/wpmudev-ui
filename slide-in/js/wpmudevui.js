@@ -1,4 +1,6 @@
-
+/* DEFINITIONS
+	 =========== */
+	 
 var wpmudevui = {
 
 		// stores results of support checks for future access
@@ -81,8 +83,9 @@ var wpmudevui = {
 		// init 
 		init : function()
 		{
-			var that = this;
+			var that = this; // wpmudevui obj scope
 			that.checkNumSupport();
+
 			$('input').each(function(){
 				that.typeNumPoly($(this));
 			});
@@ -90,9 +93,15 @@ var wpmudevui = {
 
 }; // wpmudevui object definition
 
+
+/* BELOW IS EXAMPLE OF HOW THIS WOULD BE EXECUTED
+	 ============================================== */
+
 $(function(){
 	wpmudevui.init();
+
 	// example of dynamically inserted field
 	var field = $('<input type="number" class="short" min="30" max="100" />').insertAfter('.save');
 	wpmudevui.typeNumPoly( field );
+
 }); // DOM Ready
