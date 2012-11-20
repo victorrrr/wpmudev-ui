@@ -1,6 +1,6 @@
 /* DEFINITIONS
 	 =========== */
-	 
+
 var wpmudevui = {
 
 		// stores results of support checks for future access
@@ -13,7 +13,7 @@ var wpmudevui = {
 		{ 
 			var i = document.createElement('input'),
 				  s = this.supports;
-			if (s === null) {	  
+			if (s.typenum === null) {	  
 				i.setAttribute('type','number');
 				return s.typenum = i.type !=="text";
 			}  
@@ -101,7 +101,11 @@ $(function(){
 	wpmudevui.init();
 
 	// example of dynamically inserted field
-	var field = $('<input type="number" class="short" min="30" max="100" />').insertAfter('.save');
-	wpmudevui.typeNumPoly( field );
+	$('.save').on( 'click', function(){
+		$(this).css('margin-right', '15px');
+		var field = $('<input type="number" class="short" min="30" max="100" />').insertAfter('.save');
+		wpmudevui.typeNumPoly( field );
+	});
+	
 
 }); // DOM Ready
