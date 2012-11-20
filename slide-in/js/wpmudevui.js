@@ -3,7 +3,7 @@ var wpmudevui = {
 
 		// stores results of support checks for future access
 		supports : {
-			typenum : 'null'
+			typenum : null
 		},
 		
 		// check for input type="number" support
@@ -11,24 +11,24 @@ var wpmudevui = {
 		{ 
 			var i = document.createElement('input'),
 				  s = this.supports;
-			i.setAttribute('type','number');
-			return s.typenum = i.type !=="text";  
+			if (s === null) {	  
+				i.setAttribute('type','number');
+				return s.typenum = i.type !=="text";
+			}  
 		},
 
 		// input type="number" polyfill
-		typeNumPoly : function()
+		typeNumPoly : function(elem)
 		{
-			this.checkNumSupport();
 
 			if (!(this.supports.typenum)) {
 				
-				$('input').each(function(){
-					if ( $(this).attr('type') === 'number' ) {
+					if ( elem.attr('type') === 'number' ) {
 							// insert arrow controlls
-							$(this).after('<span class="arrow-controller"><div class="num-arrow-up"></div><div class="num-arrow-down"></div></span>');
+							elem.after('<span class="arrow-controller"><div class="num-arrow-up"></div><div class="num-arrow-down"></div></span>');
 							
 							// handle clicks for inserted controlls
-							$(this).next().find('.num-arrow-up').on( 'click' , function(){
+							elem.next().find('.num-arrow-up').on( 'click' , function(){
 								var $field = $(this).parent().prev(),
 										 value = parseInt($field.val()),
 										   min = parseInt($field.attr('min')),
@@ -43,7 +43,7 @@ var wpmudevui = {
 								}
 							});
 
-							$(this).next().find('.num-arrow-down').on( 'click' , function(){
+							elem.next().find('.num-arrow-down').on( 'click' , function(){
 								var $field = $(this).parent().prev(),
 										 value = parseInt($field.val()),
 										   min = parseInt($field.attr('min')),
@@ -59,7 +59,7 @@ var wpmudevui = {
 							});
 
 							// handle field blur appropriately
-							$(this).on( 'blur' , function() {
+							elem.on( 'blur' , function() {
 								var value = parseInt( $(this).val() ),
 										  min = parseInt( $(this).attr('min') ),
 										  max = parseInt( $(this).attr('max') );
@@ -75,18 +75,24 @@ var wpmudevui = {
 								}
 							});
 					}
-				});
 			}
 		},
 
 		// init 
 		init : function()
 		{
-			this.typeNumPoly();
+			var that = this;
+			that.checkNumSupport();
+			$('input').each(function(){
+				that.typeNumPoly($(this));
+			});
 		}
 
 }; // wpmudevui object definition
 
 $(function(){
 	wpmudevui.init();
+	// example of dynamically inserted field
+	var field = $('<input type="number" class="short" min="30" max="100" />').insertAfter('.save');
+	wpmudevui.typeNumPoly( field );
 }); // DOM Ready
