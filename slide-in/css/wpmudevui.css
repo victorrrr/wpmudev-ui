@@ -244,8 +244,6 @@ body { margin:100px; background-color: #ebebeb; }
 .ie8 #wpmudev-ui select { height: auto; padding-right: 0; }
 .ie8 #wpmudev-ui button.save:before { top:3px; }
 
-
-
 /* SLIDE-IN ONLY RULES
    =================== */
 
